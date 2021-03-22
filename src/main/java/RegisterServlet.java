@@ -6,14 +6,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-//@WebServlet(name = "BarracudaServlet", value = "/andrey")
-@WebServlet(name = "RegisterServlet", value = "/RegisterServlet")
+//@WebServlet(name = "RegisterServlet", value = "/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        ApplicationParameters.create(getServletContext());
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String imagePath = ApplicationParameters.getPathToImage();
 
         response.setContentType("text/html; charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -38,7 +45,8 @@ public class RegisterServlet extends HttpServlet {
 
             if(Credential.isCredentialValid(userName, password)){
                 //пускаем пользователя
-                out.println("<h1> Пользователь ввел корректные логин и пароль!. </h1>");
+                out.println("<img src=\"imagePath\">");
+                out.println("<h1> Пользователь ввел корректные логин и пароль!</h1>");
             } else {
                 //не пускаем пользователя
                 out.println("<h1> НЕПРАВИЛЬНЫЙ ЛОГИН ИЛИ ПАРОЛЬ!!!</h1>");
