@@ -1,3 +1,6 @@
+<%@ page import="java.io.FileWriter" %>
+<%@ page import="java.io.BufferedWriter" %>
+<%@ page import="java.io.File" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +29,11 @@
     </style>
 </head>
     <body>
-        <h1><%= "Здравствуй, случайный посетитель!" %></h1>
+        <!--img src=”logo.jpg” alt="header" width="1693" height="183"-->
+        <img src=”https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png”>
+        <h1><%= "Добрый день!" %></h1>
+        <br/>
+        <a href="https://eforward.ru/">на главную</a>
         <br/>
         <a href="andrey">barracuda servlet from jsp file</a>
         <br/>
@@ -46,6 +53,13 @@
 
                 </table>
             </form>
+            
+            <%
+                BufferedWriter bf = new BufferedWriter(new FileWriter(new File("test.txt")));
+                bf.write("testing string");
+                bf.flush();
+                bf.close();
+            %>
 <%--            <form name="mult" action="Calc" method="POST">--%>
 <%--                <table>         &lt;%&ndash;таблица&ndash;%&gt;--%>
 <%--                    <tr>        &lt;%&ndash;table raw&ndash;%&gt;--%>
